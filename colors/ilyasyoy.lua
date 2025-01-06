@@ -205,11 +205,15 @@ Group.link("@markup.list.checked.markdown", g.Number)
 Group.link("@markup.link.label.markdown_inline", g.Special)
 Group.link("@markup.link.url.markdown_inline", g.Noise)
 
+-- diff
+Group.new("diffadded", c.none, c.green, s.none)
+Group.new("diffremoved", c.none, c.red_light, s.none)
+Group.link("DiffAdd", g.diffadded)
+Group.link("DiffDelete", g.diffremoved)
+
 -- Fugitive
 Group.link("fugitiveUnstagedModifier", g.TypeDef)
 Group.link("fugitiveStagedHeading", g.Warning)
 Group.link("fugitiveUntrackedHeading", g.Macro)
 Group.link("fugitiveUntrackedSection", g.Noise)
 Group.link("fugitiveUntrackedModifier", g.Noise)
-Group.new("diffadded", c.none, c.green, s.none)
-Group.new("diffremoved", c.none, c.red_light, s.none)
