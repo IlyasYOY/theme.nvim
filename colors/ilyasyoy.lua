@@ -59,7 +59,7 @@ Group.new("Number", c.green_light, c.none, s.none)
 Group.new("Special", c.purple, c.none, s.none)
 Group.new("String", c.green_deep, c.none, s.none)
 Group.new("Title", c.blue, c.none, s.none)
-Group.new("Todo", c.pink, c.none, s.none)
+Group.new("Todo", c.green, c.none, s.none)
 Group.new("Warning", c.orange, c.none, s.none)
 
 -- https://neovim.io/doc/user/syntax.html#hl-User1
