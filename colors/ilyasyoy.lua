@@ -50,7 +50,7 @@ end
 Group.new("Noise", c.dark, c.none, s.none)
 
 -- Basic groups
-Group.new("Comment", c.dark, c.none, s.none)
+Group.new("Comment", c.darker, c.none, s.none)
 Group.new("Normal", c.white, c.none, s.none)
 
 Group.new("NonText", c.darkest, c.none, s.none)
