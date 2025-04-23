@@ -4,7 +4,7 @@ local palette = {
     { keys = { "negative" }, dark = "#d75f5f" },
 
     { keys = { "positive_strong" }, dark = "#5f875f" },
-    { keys = { "positive" }, dark = "#49503b" },
+    { keys = { "positive" }, dark = "#5A875A" },
     { keys = { "positive_light" }, dark = "#87af87" },
 
     { keys = { "warning" }, dark = "#d7875f" },
@@ -18,13 +18,13 @@ local palette = {
     { keys = { "special" }, dark = "#8787af" },
 
     -- Grayscale
-    { keys = { "accent" }, dark = "#bcbcbc", light = "#1c1c1c" },
-    { keys = { "accent_light" }, dark = "#949494", light = "#262626" },
-    { keys = { "ignore_light" }, dark = "#767676", light = "#444444" },
-    { keys = { "ignore" }, dark = "#585858", light = "#585858" },
-    { keys = { "ignore_hard" }, dark = "#444444", light = "#767676" },
-    { keys = { "over_bg" }, dark = "#262626", light = "#949494" },
-    { keys = { "bg" }, dark = "#1c1c1c", light = "#bcbcbc" },
+    { keys = { "accent" }, dark = "#bcbcbc" },
+    { keys = { "accent_light" }, dark = "#949494" },
+    { keys = { "ignore_light" }, dark = "#767676" },
+    { keys = { "ignore" }, dark = "#585858" },
+    { keys = { "ignore_hard" }, dark = "#444444" },
+    { keys = { "over_bg" }, dark = "#262626" },
+    { keys = { "bg" }, dark = "#000000" },
 }
 
 local function load()
@@ -73,11 +73,6 @@ local function load()
     Group.new("User1", c.warning_deep, c.none, s.none)
     Group.new("User2", c.interesting, c.none, s.none)
     Group.new("User3", c.warning_deeper, c.none, s.none)
-
-    -- diff
-    Group.new("Added", g.Normal, c.positive, s.none)
-    Group.new("Changed", g.Normal, c.interesing_dark, s.none)
-    Group.new("Removed", g.Normal, c.negative_light, s.none)
 
     -- search and highlight stuff
     Group.new("MatchParen", c.Normal, c.none, s.underline)
@@ -190,11 +185,6 @@ local function load()
     Group.link("DiagnosticInfo", g.Comment)
     Group.link("DiagnosticOk", g.String)
 
-    -- GitSigns
-    Group.new("GitSignsAdd", c.positive_light, c.none, s.none)
-    Group.new("GitSignsChange", c.warning, c.none, s.none)
-    Group.new("GitSignsDelete", c.negative, c.none, s.none)
-
     -- Telescope
     Group.link("TelescopeBorder", g.Noise)
     Group.link("TelescopeMatching", g.User1)
@@ -207,10 +197,21 @@ local function load()
     Group.link("@markup.link.url.markdown_inline", g.Noise)
 
     -- diff
-    Group.new("diffadded", c.none, c.positive, s.none)
-    Group.new("diffremoved", c.none, c.negative_light, s.none)
-    Group.link("DiffAdd", g.diffadded)
-    Group.link("DiffDelete", g.diffremoved)
+    Group.new("DiffAdd", c.none, c.positive, s.none)
+    Group.new("DiffChange", c.none, c.warning, s.none)
+    Group.new("DiffDelete", c.none, c.negative_light, s.none)
+
+    Group.link("diffadded", g.DiffAdd)
+    Group.link("diffremoved", g.DiffDelete)
+
+    Group.new("Added", g.Normal, c.positive, s.none)
+    Group.new("Changed", g.Normal, c.warning, s.none)
+    Group.new("Removed", g.Normal, c.negative_light, s.none)
+
+    -- GitSigns
+    Group.new("GitSignsAdd", c.positive, c.none, s.none)
+    Group.new("GitSignsChange", c.warning, c.none, s.none)
+    Group.new("GitSignsDelete", c.negative_light, c.none, s.none)
 
     -- Fugitive
     Group.link("fugitiveUnstagedModifier", g.TypeDef)
