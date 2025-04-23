@@ -4,7 +4,7 @@ local palette = {
     { keys = { "negative" }, dark = "#d75f5f" },
 
     { keys = { "positive_strong" }, dark = "#5f875f" },
-    { keys = { "positive" }, dark = "#5A875A" },
+    { keys = { "positive" }, dark = "#416241" },
     { keys = { "positive_light" }, dark = "#87af87" },
 
     { keys = { "warning" }, dark = "#d7875f" },
