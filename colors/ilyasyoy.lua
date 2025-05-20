@@ -12,7 +12,7 @@ local palette = {
     { keys = { "warning_deeper" }, dark = "#875f5f" },
 
     { keys = { "interesting" }, dark = "#5f87af" },
-    { keys = { "interesing_dark" }, dark = "#3b4050" },
+    { keys = { "interesting_dark" }, dark = "#3b4050" },
 
     { keys = { "highlight" }, dark = "#d787af" },
     { keys = { "special" }, dark = "#8787af" },
@@ -197,6 +197,7 @@ local function load()
     Group.link("@markup.link.url.markdown_inline", g.Noise)
 
     -- diff
+
     Group.new("DiffAdd", c.none, c.positive, s.none)
     Group.new("DiffChange", c.none, c.warning, s.none)
     Group.new("DiffDelete", c.none, c.negative_light, s.none)
