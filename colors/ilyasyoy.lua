@@ -1,30 +1,31 @@
 -- setup colors
 local palette = {
-    { keys = { "negative_light" }, dark = "#722529" },
-    { keys = { "negative" }, dark = "#d75f5f" },
+    { keys = { "negative_light" },   dark = "#722529" },
+    { keys = { "negative" },         dark = "#d75f5f" },
 
-    { keys = { "positive_strong" }, dark = "#5f875f" },
-    { keys = { "positive" }, dark = "#416241" },
-    { keys = { "positive_light" }, dark = "#87af87" },
+    { keys = { "positive_strong" },  dark = "#5f875f" },
+    { keys = { "positive" },         dark = "#416241" },
+    { keys = { "positive_light" },   dark = "#87af87" },
 
-    { keys = { "warning" }, dark = "#d7875f" },
-    { keys = { "warning_deep" }, dark = "#af875f" },
-    { keys = { "warning_deeper" }, dark = "#875f5f" },
+    { keys = { "warning" },          dark = "#d7875f" },
+    { keys = { "warning_deep" },     dark = "#af875f" },
+    { keys = { "warning_deeper" },   dark = "#875f5f" },
 
-    { keys = { "interesting" }, dark = "#5f87af" },
+    { keys = { "interesting" },      dark = "#5f87af" },
     { keys = { "interesting_dark" }, dark = "#3b4050" },
 
-    { keys = { "highlight" }, dark = "#d787af" },
-    { keys = { "special" }, dark = "#8787af" },
+    { keys = { "highlight" },        dark = "#d787af" },
+    { keys = { "special" },          dark = "#8787af" },
 
     -- Grayscale
-    { keys = { "accent" }, dark = "#bcbcbc" },
-    { keys = { "accent_light" }, dark = "#949494" },
-    { keys = { "ignore_light" }, dark = "#767676" },
-    { keys = { "ignore" }, dark = "#585858" },
-    { keys = { "ignore_hard" }, dark = "#444444" },
-    { keys = { "over_bg" }, dark = "#262626" },
-    { keys = { "bg" }, dark = "#000000" },
+    { keys = { "accent" },           dark = "#bcbcbc" },
+    { keys = { "accent_light" },     dark = "#949494" },
+    { keys = { "ignore_light" },     dark = "#767676" },
+    { keys = { "ignore" },           dark = "#585858" },
+    { keys = { "ignore_hard" },      dark = "#444444" },
+    { keys = { "over_bg" },          dark = "#262626" },
+    { keys = { "changed_muted" },          dark = "#333333" },
+    { keys = { "bg" },               dark = "#000000" },
 }
 
 local function load()
@@ -199,19 +200,19 @@ local function load()
     -- diff
 
     Group.new("DiffAdd", c.none, c.positive, s.none)
-    Group.new("DiffChange", c.none, c.warning, s.none)
+    Group.new("DiffChange", c.none, c.changed_muted, s.none)
     Group.new("DiffDelete", c.none, c.negative_light, s.none)
 
     Group.link("diffadded", g.DiffAdd)
     Group.link("diffremoved", g.DiffDelete)
 
     Group.new("Added", g.Normal, c.positive, s.none)
-    Group.new("Changed", g.Normal, c.warning, s.none)
+    Group.new("Changed", g.Normal, c.changed_muted, s.none)
     Group.new("Removed", g.Normal, c.negative_light, s.none)
 
     -- GitSigns
     Group.new("GitSignsAdd", c.positive, c.none, s.none)
-    Group.new("GitSignsChange", c.warning, c.none, s.none)
+    Group.new("GitSignsChange", c.changed_muted, c.none, s.none)
     Group.new("GitSignsDelete", c.negative_light, c.none, s.none)
 
     -- Fugitive
