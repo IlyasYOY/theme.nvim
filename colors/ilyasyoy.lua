@@ -212,7 +212,7 @@ local function load()
 
     -- GitSigns
     Group.new("GitSignsAdd", c.positive, c.none, s.none)
-    Group.new("GitSignsChange", c.changed_muted, c.none, s.none)
+    Group.new("GitSignsChange", c.warning, c.none, s.none)
     Group.new("GitSignsDelete", c.negative_light, c.none, s.none)
 
     -- Fugitive
