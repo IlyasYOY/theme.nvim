@@ -1,31 +1,31 @@
 -- setup colors
 local palette = {
-    { keys = { "negative_light" }, dark = "#722529" },
-    { keys = { "negative" }, dark = "#d75f5f" },
+    { keys = { "negative_light" },   dark = "#722529", light = "#a0393d" },
+    { keys = { "negative" },         dark = "#d75f5f", light = "#c04040" },
 
-    { keys = { "positive_strong" }, dark = "#5f875f" },
-    { keys = { "positive" }, dark = "#416241" },
-    { keys = { "positive_light" }, dark = "#87af87" },
+    { keys = { "positive_strong" },  dark = "#5f875f", light = "#3a6b3a" },
+    { keys = { "positive" },         dark = "#416241", light = "#2d472d" },
+    { keys = { "positive_light" },   dark = "#87af87", light = "#5a8f5a" },
 
-    { keys = { "warning" }, dark = "#d7875f" },
-    { keys = { "warning_deep" }, dark = "#af875f" },
-    { keys = { "warning_deeper" }, dark = "#875f5f" },
+    { keys = { "warning" },          dark = "#d7875f", light = "#c47030" },
+    { keys = { "warning_deep" },     dark = "#af875f", light = "#9a6530" },
+    { keys = { "warning_deeper" },   dark = "#875f5f", light = "#754040" },
 
-    { keys = { "interesting" }, dark = "#5f87af" },
-    { keys = { "interesting_dark" }, dark = "#3b4050" },
+    { keys = { "interesting" },      dark = "#5f87af", light = "#306b9d" },
+    { keys = { "interesting_dark" }, dark = "#3b4050", light = "#505565" },
 
-    { keys = { "highlight" }, dark = "#d787af" },
-    { keys = { "special" }, dark = "#8787af" },
+    { keys = { "highlight" },        dark = "#d787af", light = "#c56095" },
+    { keys = { "special" },          dark = "#8787af", light = "#606095" },
 
     -- Grayscale
-    { keys = { "accent" }, dark = "#bcbcbc" },
-    { keys = { "accent_light" }, dark = "#949494" },
-    { keys = { "ignore_light" }, dark = "#767676" },
-    { keys = { "ignore" }, dark = "#585858" },
-    { keys = { "ignore_hard" }, dark = "#444444" },
-    { keys = { "over_bg" }, dark = "#262626" },
-    { keys = { "changed_muted" }, dark = "#333333" },
-    { keys = { "bg" }, dark = "#000000" },
+    { keys = { "accent" },           dark = "#bcbcbc", light = "#111111" },
+    { keys = { "accent_light" },     dark = "#949494", light = "#222222" },
+    { keys = { "ignore_light" },     dark = "#767676", light = "#888888" },
+    { keys = { "ignore" },           dark = "#585858", light = "#999999" },
+    { keys = { "ignore_hard" },      dark = "#444444", light = "#aaaaaa" },
+    { keys = { "over_bg" },          dark = "#262626", light = "#ffffff" },
+    { keys = { "changed_muted" },    dark = "#333333", light = "#cccccc" },
+    { keys = { "bg" },               dark = "#000000", light = "#f0f0f0" },
 }
 
 local function load()
@@ -42,9 +42,9 @@ local function load()
     for _, value in ipairs(palette) do
         for _, key in ipairs(value.keys) do
             if bg == "light" then
-                Color.new(key, value.light or value.dark)
+                Color.new(key, value.light)
             elseif bg == "dark" then
-                Color.new(key, value.dark or value.light)
+                Color.new(key, value.dark)
             end
         end
     end
@@ -150,6 +150,9 @@ local function load()
     Group.link("WarningMsg", g.Warning)
 
     Group.link("Conceal", g.Comment)
+    if bg == "light" then
+        Group.new("Cursor", c.accent, c.warning, s.none)
+    end
     Group.link("CursorLine", g.StatusLine)
     Group.link("ColorColumn", g.CursorLine)
     Group.new("CursorLineNr", g.Normal)
@@ -199,9 +202,13 @@ local function load()
 
     -- diff
 
-    Group.new("DiffAdd", c.none, c.positive, s.none)
-    Group.new("DiffChange", c.none, c.changed_muted, s.none)
-    Group.new("DiffDelete", c.none, c.negative_light, s.none)
+    local diff_add_bg = bg == "light" and c.positive_light or c.positive
+    local diff_change_bg = bg == "light" and c.changed_muted or c.changed_muted
+    local diff_delete_bg = bg == "light" and c.ignore_hard or c.negative_light
+
+    Group.new("DiffAdd", c.none, diff_add_bg, s.none)
+    Group.new("DiffChange", c.none, diff_change_bg, s.none)
+    Group.new("DiffDelete", c.none, diff_delete_bg, s.none)
 
     Group.link("diffadded", g.DiffAdd)
     Group.link("diffremoved", g.DiffDelete)
