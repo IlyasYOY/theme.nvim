@@ -1,31 +1,31 @@
 -- setup colors
 local palette = {
-    { keys = { "negative_light" },   dark = "#722529", light = "#a0393d" },
-    { keys = { "negative" },         dark = "#d75f5f", light = "#c04040" },
+    { keys = { "negative_light" }, dark = "#722529", light = "#a0393d" },
+    { keys = { "negative" }, dark = "#d75f5f", light = "#c04040" },
 
-    { keys = { "positive_strong" },  dark = "#5f875f", light = "#3a6b3a" },
-    { keys = { "positive" },         dark = "#416241", light = "#2d472d" },
-    { keys = { "positive_light" },   dark = "#87af87", light = "#5a8f5a" },
+    { keys = { "positive_strong" }, dark = "#5f875f", light = "#3a6b3a" },
+    { keys = { "positive" }, dark = "#416241", light = "#2d472d" },
+    { keys = { "positive_light" }, dark = "#87af87", light = "#5a8f5a" },
 
-    { keys = { "warning" },          dark = "#d7875f", light = "#c47030" },
-    { keys = { "warning_deep" },     dark = "#af875f", light = "#9a6530" },
-    { keys = { "warning_deeper" },   dark = "#875f5f", light = "#754040" },
+    { keys = { "warning" }, dark = "#d7875f", light = "#c47030" },
+    { keys = { "warning_deep" }, dark = "#af875f", light = "#9a6530" },
+    { keys = { "warning_deeper" }, dark = "#875f5f", light = "#754040" },
 
-    { keys = { "interesting" },      dark = "#5f87af", light = "#306b9d" },
+    { keys = { "interesting" }, dark = "#5f87af", light = "#306b9d" },
     { keys = { "interesting_dark" }, dark = "#3b4050", light = "#505565" },
 
-    { keys = { "highlight" },        dark = "#d787af", light = "#c56095" },
-    { keys = { "special" },          dark = "#8787af", light = "#606095" },
+    { keys = { "highlight" }, dark = "#d787af", light = "#c56095" },
+    { keys = { "special" }, dark = "#8787af", light = "#606095" },
 
     -- Grayscale
-    { keys = { "accent" },           dark = "#bcbcbc", light = "#111111" },
-    { keys = { "accent_light" },     dark = "#949494", light = "#222222" },
-    { keys = { "ignore_light" },     dark = "#767676", light = "#888888" },
-    { keys = { "ignore" },           dark = "#585858", light = "#999999" },
-    { keys = { "ignore_hard" },      dark = "#444444", light = "#aaaaaa" },
-    { keys = { "over_bg" },          dark = "#262626", light = "#ffffff" },
-    { keys = { "changed_muted" },    dark = "#333333", light = "#cccccc" },
-    { keys = { "bg" },               dark = "#000000", light = "#f0f0f0" },
+    { keys = { "accent" }, dark = "#bcbcbc", light = "#111111" },
+    { keys = { "accent_light" }, dark = "#949494", light = "#222222" },
+    { keys = { "ignore_light" }, dark = "#767676", light = "#888888" },
+    { keys = { "ignore" }, dark = "#585858", light = "#999999" },
+    { keys = { "ignore_hard" }, dark = "#444444", light = "#aaaaaa" },
+    { keys = { "over_bg" }, dark = "#262626", light = "#ffffff" },
+    { keys = { "changed_muted" }, dark = "#333333", light = "#cccccc" },
+    { keys = { "bg" }, dark = "#000000", light = "#f0f0f0" },
 }
 
 local function load()
