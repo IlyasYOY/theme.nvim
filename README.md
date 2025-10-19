@@ -4,9 +4,7 @@ A minimal, eye-friendly dark theme with subtle accents, designed for focus and
 comfort during extended coding sessions. A Neovim colorscheme tailored for
 readability and aesthetic consistency.
 
-A fork of: [redbug312/cactusbuddy](https://github.com/redbug312/cactusbuddy),
-built on
-[tjdevries/colorbuddy.nvim](https://github.com/tjdevries/colorbuddy.nvim).
+A fork of: [redbug312/cactusbuddy](https://github.com/redbug312/cactusbuddy).
 
 ## Installation
 
@@ -15,7 +13,6 @@ built on
 ```lua
 {
     "IlyasYOY/theme.nvim",
-    dependencies = "tjdevries/colorbuddy.nvim",
     lazy = false,
     priority = 1000,
     config = function()

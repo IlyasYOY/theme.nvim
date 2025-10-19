@@ -30,204 +30,365 @@ local palette = {
 
 local function load()
     local bg = vim.o.background
-    local colorbuddy = require "colorbuddy"
-    colorbuddy.colorscheme "ilyasyoy"
 
-    local Color = colorbuddy.Color
-    local Group = colorbuddy.Group
-    local c = colorbuddy.colors
-    local g = colorbuddy.groups
-    local s = colorbuddy.styles
+    -- Set up colorscheme
+    vim.cmd "set termguicolors"
+    vim.cmd 'let g:colors_name = "ilyasyoy"'
+    vim.cmd("set background=" .. bg)
 
+    -- Define colors based on background
+    local colors = {}
     for _, value in ipairs(palette) do
         for _, key in ipairs(value.keys) do
             if bg == "light" then
-                Color.new(key, value.light)
+                colors[key] = value.light
             elseif bg == "dark" then
-                Color.new(key, value.dark)
+                colors[key] = value.dark
             end
         end
     end
+
+    -- Add special colors
+    colors.none = "none"
 
     -- EDITOR BASICS
     -- https://neovim.io/doc/user/syntax.html#group-name
 
     -- Custom groups
-    Group.new("Noise", c.ignore_light, c.none, s.none)
+    vim.api.nvim_set_hl(
+        0,
+        "Noise",
+        { fg = colors.ignore_light, bg = colors.none }
+    )
 
     -- Basic groups
-    Group.new("Comment", c.ignore, c.none, s.none)
-    Group.new("NormalFloat", g.Normal)
-    Group.new("Normal", c.accent, c.bg, s.none)
+    vim.api.nvim_set_hl(0, "Comment", { fg = colors.ignore, bg = colors.none })
+    vim.api.nvim_set_hl(0, "NormalFloat", { link = "Normal" })
+    vim.api.nvim_set_hl(0, "Normal", { fg = colors.accent, bg = colors.bg })
 
-    Group.new("NonText", c.ignore_hard, c.none, s.none)
-    Group.new("Error", c.negative, c.none, s.none)
-    Group.new("Number", c.positive_light, c.none, s.none)
-    Group.new("Special", c.special, c.none, s.none)
-    Group.new("String", c.positive_strong, c.none, s.none)
-    Group.new("Title", c.interesting, c.none, s.none)
-    Group.new("Todo", c.positive, c.none, s.none)
+    vim.api.nvim_set_hl(
+        0,
+        "NonText",
+        { fg = colors.ignore_hard, bg = colors.none }
+    )
+    vim.api.nvim_set_hl(0, "Error", { fg = colors.negative, bg = colors.none })
+    vim.api.nvim_set_hl(
+        0,
+        "Number",
+        { fg = colors.positive_light, bg = colors.none }
+    )
+    vim.api.nvim_set_hl(0, "Special", { fg = colors.special, bg = colors.none })
+    vim.api.nvim_set_hl(
+        0,
+        "String",
+        { fg = colors.positive_strong, bg = colors.none }
+    )
+    vim.api.nvim_set_hl(
+        0,
+        "Title",
+        { fg = colors.interesting, bg = colors.none }
+    )
+    vim.api.nvim_set_hl(0, "Todo", { fg = colors.positive, bg = colors.none })
 
-    Group.new("Warning", c.warning, c.none, s.none)
+    vim.api.nvim_set_hl(0, "Warning", { fg = colors.warning, bg = colors.none })
 
     -- https://neovim.io/doc/user/syntax.html#hl-User1
-    Group.new("User1", c.warning_deep, c.none, s.none)
-    Group.new("User2", c.interesting, c.none, s.none)
-    Group.new("User3", c.warning_deeper, c.none, s.none)
+    vim.api.nvim_set_hl(
+        0,
+        "User1",
+        { fg = colors.warning_deep, bg = colors.none }
+    )
+    vim.api.nvim_set_hl(
+        0,
+        "User2",
+        { fg = colors.interesting, bg = colors.none }
+    )
+    vim.api.nvim_set_hl(
+        0,
+        "User3",
+        { fg = colors.warning_deeper, bg = colors.none }
+    )
 
     -- search and highlight stuff
-    Group.new("MatchParen", c.Normal, c.none, s.underline)
+    vim.api.nvim_set_hl(
+        0,
+        "MatchParen",
+        { fg = colors.accent, bg = colors.none, underline = true }
+    )
 
-    Group.new("CurSearch", c.highlight, c.none, s.underline)
-    Group.new("IncSearch", c.highlight, c.none, s.none)
-    Group.new("Search", c.highlight, c.none, s.none)
+    vim.api.nvim_set_hl(
+        0,
+        "CurSearch",
+        { fg = colors.highlight, bg = colors.none, underline = true }
+    )
+    vim.api.nvim_set_hl(
+        0,
+        "IncSearch",
+        { fg = colors.highlight, bg = colors.none }
+    )
+    vim.api.nvim_set_hl(
+        0,
+        "Search",
+        { fg = colors.highlight, bg = colors.none }
+    )
 
-    Group.new("Pmenu", c.ignore_light, c.over_bg, s.none)
-    Group.new("PmenuSel", c.accent_light, c.bg, s.underline)
+    vim.api.nvim_set_hl(
+        0,
+        "Pmenu",
+        { fg = colors.ignore_light, bg = colors.over_bg }
+    )
+    vim.api.nvim_set_hl(
+        0,
+        "PmenuSel",
+        { fg = colors.accent_light, bg = colors.bg, underline = true }
+    )
 
-    Group.new("PmenuThumb", c.warning_deep, c.over_bg, s.none) -- not sure what this is
-    Group.new("WildMenu", c.highlight, c.over_bg, s.none)
+    vim.api.nvim_set_hl(
+        0,
+        "PmenuThumb",
+        { fg = colors.warning_deep, bg = colors.over_bg }
+    ) -- not sure what this is
+    vim.api.nvim_set_hl(
+        0,
+        "WildMenu",
+        { fg = colors.highlight, bg = colors.over_bg }
+    )
 
-    Group.new("StatusLine", c.none, c.over_bg, s.none)
-    Group.new("StatusLineNC", c.bg, c.none, s.none)
+    vim.api.nvim_set_hl(
+        0,
+        "StatusLine",
+        { fg = colors.none, bg = colors.over_bg }
+    )
+    vim.api.nvim_set_hl(0, "StatusLineNC", { fg = colors.bg, bg = colors.none })
 
-    Group.new("Visual", c.interesting, c.over_bg, s.none)
-    Group.new("VisualNOS", c.interesting, c.over_bg, s.none)
+    vim.api.nvim_set_hl(
+        0,
+        "Visual",
+        { fg = colors.interesting, bg = colors.over_bg }
+    )
+    vim.api.nvim_set_hl(
+        0,
+        "VisualNOS",
+        { fg = colors.interesting, bg = colors.over_bg }
+    )
 
-    Group.new("qffilename", g.Title, g.Title, g.Title)
+    vim.api.nvim_set_hl(0, "qffilename", { link = "Title" })
 
-    -- spelling problesm are shown!
-    Group.new("SpellBad", c.negative, c.none, s.undercurl)
-    Group.new("SpellCap", c.warning, c.none, s.undercurl)
-    Group.new("SpellLocal", c.warning_deep, c.none, s.undercurl)
-    Group.new("SpellRare", c.interesting, c.none, s.undercurl)
+    -- spelling problems are shown!
+    vim.api.nvim_set_hl(
+        0,
+        "SpellBad",
+        { fg = colors.negative, bg = colors.none, undercurl = true }
+    )
+    vim.api.nvim_set_hl(
+        0,
+        "SpellCap",
+        { fg = colors.warning, bg = colors.none, undercurl = true }
+    )
+    vim.api.nvim_set_hl(
+        0,
+        "SpellLocal",
+        { fg = colors.warning_deep, bg = colors.none, undercurl = true }
+    )
+    vim.api.nvim_set_hl(
+        0,
+        "SpellRare",
+        { fg = colors.interesting, bg = colors.none, undercurl = true }
+    )
 
     -- LINKS
-    Group.new("Constant", g.Normal)
-    Group.link("Boolean", g.Number)
-    Group.link("Character", g.Number)
-    Group.new("Conditional", g.Normal)
-    Group.link("Debug", g.Todo)
-    Group.link("Delimiter", g.Noise)
-    Group.link("Directory", g.String)
-    Group.new("Exception", g.Normal)
-    Group.link("Function", g.Special)
-    Group.new("Identifier", g.Normal)
-    Group.new("Include", g.Normal)
-    Group.link("Keyword", g.Noise)
-    Group.new("Label", g.Normal, c.none, g.Normal + s.bold)
-    Group.link("Macro", g.User2)
-    Group.link("Operator", g.Noise)
-    Group.new("PreProc", g.Normal)
-    Group.new("Repeat", g.Normal)
-    Group.link("SpecialChar", g.Special)
-    Group.link("SpecialKey", g.Special)
-    Group.new("Statement", g.Normal)
-    Group.new("StorageClass", g.Normal)
-    Group.new("Structure", g.Normal)
-    Group.new("Tag", g.Normal)
-    Group.link("Type", g.User3)
-    Group.link("TypeDef", g.User3)
+    vim.api.nvim_set_hl(0, "Constant", { link = "Normal" })
+    vim.api.nvim_set_hl(0, "Boolean", { link = "Number" })
+    vim.api.nvim_set_hl(0, "Character", { link = "Number" })
+    vim.api.nvim_set_hl(0, "Conditional", { link = "Normal" })
+    vim.api.nvim_set_hl(0, "Debug", { link = "Todo" })
+    vim.api.nvim_set_hl(0, "Delimiter", { link = "Noise" })
+    vim.api.nvim_set_hl(0, "Directory", { link = "String" })
+    vim.api.nvim_set_hl(0, "Exception", { link = "Normal" })
+    vim.api.nvim_set_hl(0, "Function", { link = "Special" })
+    vim.api.nvim_set_hl(0, "Identifier", { link = "Normal" })
+    vim.api.nvim_set_hl(0, "Include", { link = "Normal" })
+    vim.api.nvim_set_hl(0, "Keyword", { link = "Noise" })
+    vim.api.nvim_set_hl(
+        0,
+        "Label",
+        { fg = colors.accent, bg = colors.none, bold = true }
+    )
+    vim.api.nvim_set_hl(0, "Macro", { link = "User2" })
+    vim.api.nvim_set_hl(0, "Operator", { link = "Noise" })
+    vim.api.nvim_set_hl(0, "PreProc", { link = "Normal" })
+    vim.api.nvim_set_hl(0, "Repeat", { link = "Normal" })
+    vim.api.nvim_set_hl(0, "SpecialChar", { link = "Special" })
+    vim.api.nvim_set_hl(0, "SpecialKey", { link = "Special" })
+    vim.api.nvim_set_hl(0, "Statement", { link = "Normal" })
+    vim.api.nvim_set_hl(0, "StorageClass", { link = "Normal" })
+    vim.api.nvim_set_hl(0, "Structure", { link = "Normal" })
+    vim.api.nvim_set_hl(0, "Tag", { link = "Normal" })
+    vim.api.nvim_set_hl(0, "Type", { link = "User3" })
+    vim.api.nvim_set_hl(0, "TypeDef", { link = "User3" })
 
     -- treesitter stuff
-    Group.link("@type.builtin", g.User3)
-    Group.link("@constant.builtin", g.User1)
-    Group.link("@constructor", g.Special)
-    Group.link("@exception.operator", g.Special)
-    Group.new("@function.macro", g.Normal)
-    Group.new("@namespace", g.Normal)
-    Group.new("@punctuation.special", g.Normal)
-    Group.link("@keyword.storage", g.User2)
-    Group.new("@type.qualifier", g.Normal)
-    Group.new("@variable", g.Normal)
-    Group.link("@variable.builtin", g.String)
+    vim.api.nvim_set_hl(0, "@type.builtin", { link = "User3" })
+    vim.api.nvim_set_hl(0, "@constant.builtin", { link = "User1" })
+    vim.api.nvim_set_hl(0, "@constructor", { link = "Special" })
+    vim.api.nvim_set_hl(0, "@exception.operator", { link = "Special" })
+    vim.api.nvim_set_hl(0, "@function.macro", { link = "Normal" })
+    vim.api.nvim_set_hl(0, "@namespace", { link = "Normal" })
+    vim.api.nvim_set_hl(0, "@punctuation.special", { link = "Normal" })
+    vim.api.nvim_set_hl(0, "@keyword.storage", { link = "User2" })
+    vim.api.nvim_set_hl(0, "@type.qualifier", { link = "Normal" })
+    vim.api.nvim_set_hl(0, "@variable", { link = "Normal" })
+    vim.api.nvim_set_hl(0, "@variable.builtin", { link = "String" })
 
     -- USER INTERFACE
-    Group.link("ErrorMsg", g.Error)
-    Group.new("ModeMsg", g.Normal)
-    Group.new("MoreMsg", g.Normal)
-    Group.link("Question", g.Warning)
-    Group.link("WarningMsg", g.Warning)
+    vim.api.nvim_set_hl(0, "ErrorMsg", { link = "Error" })
+    vim.api.nvim_set_hl(0, "ModeMsg", { link = "Normal" })
+    vim.api.nvim_set_hl(0, "MoreMsg", { link = "Normal" })
+    vim.api.nvim_set_hl(0, "Question", { link = "Warning" })
+    vim.api.nvim_set_hl(0, "WarningMsg", { link = "Warning" })
 
-    Group.link("Conceal", g.Comment)
+    vim.api.nvim_set_hl(0, "Conceal", { link = "Comment" })
     if bg == "light" then
-        Group.new("Cursor", c.accent, c.warning, s.none)
+        vim.api.nvim_set_hl(
+            0,
+            "Cursor",
+            { fg = colors.accent, bg = colors.warning }
+        )
     end
-    Group.link("CursorLine", g.StatusLine)
-    Group.link("ColorColumn", g.CursorLine)
-    Group.new("CursorLineNr", g.Normal)
-    Group.link("EndOfBuffer", g.NonText)
-    Group.link("Folded", g.NonText)
-    Group.link("LineNr", g.NonText)
-    Group.link("FoldColumn", g.LineNr)
-    Group.link("SignColumn", g.LineNr)
-    Group.link("VertSplit", g.NonText)
-    Group.link("Whitespace", g.NonText)
-    Group.link("WinSeparator", g.NonText)
+    vim.api.nvim_set_hl(0, "CursorLine", { link = "StatusLine" })
+    vim.api.nvim_set_hl(0, "ColorColumn", { link = "CursorLine" })
+    vim.api.nvim_set_hl(0, "CursorLineNr", { link = "Normal" })
+    vim.api.nvim_set_hl(0, "EndOfBuffer", { link = "NonText" })
+    vim.api.nvim_set_hl(0, "Folded", { link = "NonText" })
+    vim.api.nvim_set_hl(0, "LineNr", { link = "NonText" })
+    vim.api.nvim_set_hl(0, "FoldColumn", { link = "LineNr" })
+    vim.api.nvim_set_hl(0, "SignColumn", { link = "LineNr" })
+    vim.api.nvim_set_hl(0, "VertSplit", { link = "NonText" })
+    vim.api.nvim_set_hl(0, "Whitespace", { link = "NonText" })
+    vim.api.nvim_set_hl(0, "WinSeparator", { link = "NonText" })
 
-    Group.new("TabLine", g.Normal)
-    Group.new("TabLineFill", g.Normal)
-    Group.link("TabLineSel", g.Special)
+    vim.api.nvim_set_hl(0, "TabLine", { link = "Normal" })
+    vim.api.nvim_set_hl(0, "TabLineFill", { link = "Normal" })
+    vim.api.nvim_set_hl(0, "TabLineSel", { link = "Special" })
 
-    Group.link("NvimInternalError", g.Error)
-    Group.link("FloatBorder", g.NonText)
+    vim.api.nvim_set_hl(0, "NvimInternalError", { link = "Error" })
+    vim.api.nvim_set_hl(0, "FloatBorder", { link = "NonText" })
 
     -- Diagnostics
-    Group.new(
-        "DiagnosticUnderlineError",
-        c.none,
-        c.none,
-        s.underline,
-        c.negative
-    )
-    Group.new("DiagnosticUnderlineWarn", c.none, c.none, s.underline, c.warning)
-    Group.new("DiagnosticUnderlineHint", c.none, c.none, s.underline)
-    Group.new("DiagnosticUnderlineInfo", c.none, c.none, s.underline)
-    Group.link("DiagnosticError", g.Error)
-    Group.link("DiagnosticWarn", g.Warning)
-    Group.link("DiagnosticHint", g.Comment)
-    Group.link("DiagnosticInfo", g.Comment)
-    Group.link("DiagnosticOk", g.String)
+    vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", {
+        fg = colors.none,
+        bg = colors.none,
+        underline = true,
+        sp = colors.negative,
+    })
+    vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", {
+        fg = colors.none,
+        bg = colors.none,
+        underline = true,
+        sp = colors.warning,
+    })
+    vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint", {
+        fg = colors.none,
+        bg = colors.none,
+        underline = true,
+    })
+    vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo", {
+        fg = colors.none,
+        bg = colors.none,
+        underline = true,
+    })
+    vim.api.nvim_set_hl(0, "DiagnosticError", { link = "Error" })
+    vim.api.nvim_set_hl(0, "DiagnosticWarn", { link = "Warning" })
+    vim.api.nvim_set_hl(0, "DiagnosticHint", { link = "Comment" })
+    vim.api.nvim_set_hl(0, "DiagnosticInfo", { link = "Comment" })
+    vim.api.nvim_set_hl(0, "DiagnosticOk", { link = "String" })
 
     -- Telescope
-    Group.link("TelescopeBorder", g.Noise)
-    Group.link("TelescopeMatching", g.User1)
-    Group.link("TelescopePromptCounter", g.Noise)
+    vim.api.nvim_set_hl(0, "TelescopeBorder", { link = "Noise" })
+    vim.api.nvim_set_hl(0, "TelescopeMatching", { link = "User1" })
+    vim.api.nvim_set_hl(0, "TelescopePromptCounter", { link = "Noise" })
 
     -- Markdown
-    Group.link("@markup.list.unchecked.markdown", g.Error)
-    Group.link("@markup.list.checked.markdown", g.Number)
-    Group.link("@markup.link.label.markdown_inline", g.Special)
-    Group.link("@markup.link.url.markdown_inline", g.Noise)
+    vim.api.nvim_set_hl(
+        0,
+        "@markup.list.unchecked.markdown",
+        { link = "Error" }
+    )
+    vim.api.nvim_set_hl(0, "@markup.list.checked.markdown", { link = "Number" })
+    vim.api.nvim_set_hl(
+        0,
+        "@markup.link.label.markdown_inline",
+        { link = "Special" }
+    )
+    vim.api.nvim_set_hl(
+        0,
+        "@markup.link.url.markdown_inline",
+        { link = "Noise" }
+    )
 
     -- diff
 
-    local diff_add_bg = bg == "light" and c.positive_light or c.positive
-    local diff_change_bg = bg == "light" and c.changed_muted or c.changed_muted
-    local diff_delete_bg = bg == "light" and c.ignore_hard or c.negative_light
+    local diff_add_bg = bg == "light" and colors.positive_light
+        or colors.positive
+    local diff_change_bg = bg == "light" and colors.changed_muted
+        or colors.changed_muted
+    local diff_delete_bg = bg == "light" and colors.ignore_hard
+        or colors.negative_light
 
-    Group.new("DiffAdd", c.none, diff_add_bg, s.none)
-    Group.new("DiffChange", c.none, diff_change_bg, s.none)
-    Group.new("DiffDelete", c.none, diff_delete_bg, s.none)
+    vim.api.nvim_set_hl(0, "DiffAdd", { fg = colors.none, bg = diff_add_bg })
+    vim.api.nvim_set_hl(
+        0,
+        "DiffChange",
+        { fg = colors.none, bg = diff_change_bg }
+    )
+    vim.api.nvim_set_hl(
+        0,
+        "DiffDelete",
+        { fg = colors.none, bg = diff_delete_bg }
+    )
 
-    Group.link("diffadded", g.DiffAdd)
-    Group.link("diffremoved", g.DiffDelete)
+    vim.api.nvim_set_hl(0, "diffadded", { link = "DiffAdd" })
+    vim.api.nvim_set_hl(0, "diffremoved", { link = "DiffDelete" })
 
-    Group.new("Added", g.Normal, c.positive, s.none)
-    Group.new("Changed", g.Normal, c.changed_muted, s.none)
-    Group.new("Removed", g.Normal, c.negative_light, s.none)
+    vim.api.nvim_set_hl(
+        0,
+        "Added",
+        { fg = colors.accent, bg = colors.positive }
+    )
+    vim.api.nvim_set_hl(
+        0,
+        "Changed",
+        { fg = colors.accent, bg = colors.changed_muted }
+    )
+    vim.api.nvim_set_hl(
+        0,
+        "Removed",
+        { fg = colors.accent, bg = colors.negative_light }
+    )
 
     -- GitSigns
-    Group.new("GitSignsAdd", c.positive, c.none, s.none)
-    Group.new("GitSignsChange", c.warning, c.none, s.none)
-    Group.new("GitSignsDelete", c.negative_light, c.none, s.none)
+    vim.api.nvim_set_hl(
+        0,
+        "GitSignsAdd",
+        { fg = colors.positive, bg = colors.none }
+    )
+    vim.api.nvim_set_hl(
+        0,
+        "GitSignsChange",
+        { fg = colors.warning, bg = colors.none }
+    )
+    vim.api.nvim_set_hl(
+        0,
+        "GitSignsDelete",
+        { fg = colors.negative_light, bg = colors.none }
+    )
 
     -- Fugitive
-    Group.link("fugitiveUnstagedModifier", g.TypeDef)
-    Group.link("fugitiveStagedHeading", g.Warning)
-    Group.link("fugitiveUntrackedHeading", g.Macro)
-    Group.link("fugitiveUntrackedSection", g.Noise)
-    Group.link("fugitiveUntrackedModifier", g.Noise)
+    vim.api.nvim_set_hl(0, "fugitiveUnstagedModifier", { link = "User3" })
+    vim.api.nvim_set_hl(0, "fugitiveStagedHeading", { link = "Warning" })
+    vim.api.nvim_set_hl(0, "fugitiveUntrackedHeading", { link = "User2" })
+    vim.api.nvim_set_hl(0, "fugitiveUntrackedSection", { link = "Noise" })
+    vim.api.nvim_set_hl(0, "fugitiveUntrackedModifier", { link = "Noise" })
 end
 
 load()
