@@ -6,6 +6,8 @@ readability and aesthetic consistency.
 
 A fork of: [redbug312/cactusbuddy](https://github.com/redbug312/cactusbuddy).
 
+<img width="1384" height="903" alt="Screenshot 2025-10-19 at 13 19 58" src="https://github.com/user-attachments/assets/ba4102ba-e724-4b2c-8b2a-09c8efea97fe" />
+
 ## Installation
 
 ### [lazy.nvim](https://github.com/folke/lazy.nvim)
