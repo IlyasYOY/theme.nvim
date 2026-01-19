@@ -174,6 +174,10 @@ local function load()
 
     vim.api.nvim_set_hl(0, "qffilename", { link = "Title" })
 
+    -- snippets
+    -- I don't want to highlight when I use built-in completion.
+    vim.api.nvim_set_hl(0, "SnippetTabStop", {  })
+
     -- spelling problems are shown!
     vim.api.nvim_set_hl(
         0,
