@@ -64,7 +64,7 @@ local function load()
     -- Basic groups
     vim.api.nvim_set_hl(0, "Comment", { fg = colors.ignore, bg = colors.none })
     vim.api.nvim_set_hl(0, "NormalFloat", { link = "Normal" })
-    vim.api.nvim_set_hl(0, "Normal", { fg = colors.accent, bg = colors.bg })
+    vim.api.nvim_set_hl(0, "Normal", { fg = colors.accent, bg = colors.none })
 
     vim.api.nvim_set_hl(
         0,
