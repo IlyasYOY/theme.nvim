@@ -1,53 +1,60 @@
 local function hi(group, opts)
-  opts = opts or {}
-  local guifg = opts.guifg or "NONE"
-  local guibg = opts.guibg or "NONE"
-  local guisp = opts.guisp or "NONE"
-  local gui = opts.gui or "NONE"
-  local ctermfg = opts.ctermfg or "NONE"
-  local ctermbg = opts.ctermbg or "NONE"
-  local cterm = opts.cterm or "NONE"
+    opts = opts or {}
+    local guifg = opts.guifg or "NONE"
+    local guibg = opts.guibg or "NONE"
+    local guisp = opts.guisp or "NONE"
+    local gui = opts.gui or "NONE"
+    local ctermfg = opts.ctermfg or "NONE"
+    local ctermbg = opts.ctermbg or "NONE"
+    local cterm = opts.cterm or "NONE"
 
-  local cmd = string.format(
-    "hi %s guifg=%s guibg=%s guisp=%s gui=%s ctermfg=%s ctermbg=%s cterm=%s",
-    group, guifg, guibg, guisp, gui, ctermfg, ctermbg, cterm
-  )
-  vim.cmd(cmd)
+    local cmd = string.format(
+        "hi %s guifg=%s guibg=%s guisp=%s gui=%s ctermfg=%s ctermbg=%s cterm=%s",
+        group,
+        guifg,
+        guibg,
+        guisp,
+        gui,
+        ctermfg,
+        ctermbg,
+        cterm
+    )
+    vim.cmd(cmd)
 end
 
 local function link(from, to)
-  vim.cmd(string.format("hi! link %s %s", from, to))
+    vim.cmd(string.format("hi! link %s %s", from, to))
 end
 
 -- =============================================================================
 -- PALETTE
 -- =============================================================================
 local palette = {
-  bg = "#000000",
-  fg = "#dadada",
-  elevated = "#1c1c1c",
-  subtle = "#303030",
-  muted = "#707070",
-  noise = "#191919",
+    bg = "#000000",
+    fg = "#dadada",
+    elevated = "#1c1c1c",
+    subtle = "#303030",
+    muted = "#707070",
+    noise = "#191919",
 
-  accent_search = "#00afff",
-  accent_visual = "#ffaf00",
-  accent_diff_add = "#416241",
-  accent_diff_del = "#722529",
-  accent_error = "#ff005f",
+    accent_search = "#00afff",
+    accent_visual = "#ffaf00",
+    accent_diff_add = "#416241",
+    accent_diff_del = "#722529",
+    accent_error = "#ff005f",
 }
 
 local bg = vim.o.background
 
 if bg == "light" then
-  palette.bg = "#d7d7d7"
-  palette.fg = "#000000"
-  palette.elevated = "#eeeeee"
-  palette.subtle = "#e4e4e4"
-  palette.muted = "#626262"
-  palette.accent_diff_add = "#8dda9e"
-  palette.accent_diff_del = "#da8d8d"
-  palette.noise = "#cccccc"
+    palette.bg = "#d7d7d7"
+    palette.fg = "#000000"
+    palette.elevated = "#eeeeee"
+    palette.subtle = "#e4e4e4"
+    palette.muted = "#626262"
+    palette.accent_diff_add = "#8dda9e"
+    palette.accent_diff_del = "#da8d8d"
+    palette.noise = "#cccccc"
 end
 
 -- Set up colorscheme
@@ -167,10 +174,22 @@ link("@tag.attribute", "Type")
 -- =============================================================================
 -- SEARCH AND VISUAL
 -- =============================================================================
-hi("Search", { guifg = palette.accent_search, guibg = palette.bg, gui = "reverse" })
-hi("IncSearch", { guifg = palette.accent_visual, guibg = palette.bg, gui = "reverse" })
-hi("CurSearch", { guifg = palette.accent_visual, guibg = palette.bg, gui = "reverse" })
-hi("Visual", { guifg = palette.accent_visual, guibg = palette.bg, gui = "reverse" })
+hi(
+    "Search",
+    { guifg = palette.accent_search, guibg = palette.bg, gui = "reverse" }
+)
+hi(
+    "IncSearch",
+    { guifg = palette.accent_visual, guibg = palette.bg, gui = "reverse" }
+)
+hi(
+    "CurSearch",
+    { guifg = palette.accent_visual, guibg = palette.bg, gui = "reverse" }
+)
+hi(
+    "Visual",
+    { guifg = palette.accent_visual, guibg = palette.bg, gui = "reverse" }
+)
 hi("VisualNOS", { guibg = palette.subtle })
 
 -- =============================================================================
@@ -178,7 +197,7 @@ hi("VisualNOS", { guibg = palette.subtle })
 -- =============================================================================
 hi("DiffAdd", { guibg = palette.accent_diff_add })
 hi("DiffDelete", { guibg = palette.accent_diff_del })
-hi("DiffChange", { guifg = "#87afd7", guibg = palette.bg, })
+hi("DiffChange", { guifg = "#87afd7", guibg = palette.bg })
 hi("DiffText", { guifg = "#d787d7", guibg = palette.bg })
 
 link("@diff.plus", "DiffAdd")
@@ -209,7 +228,10 @@ hi("PmenuKindSel", { guifg = palette.bg, guibg = palette.fg, gui = "bold" })
 hi("PmenuSbar", { guibg = palette.subtle })
 hi("PmenuThumb", { guibg = palette.muted })
 
-hi("WildMenu", { guifg = palette.accent_search, guibg = palette.bg, gui = "bold" })
+hi(
+    "WildMenu",
+    { guifg = palette.accent_search, guibg = palette.bg, gui = "bold" }
+)
 hi("Directory", { guifg = palette.fg })
 hi("Title", { guifg = palette.fg })
 hi("Question", { guifg = palette.fg })
@@ -220,7 +242,11 @@ hi("ModeMsg", { guifg = palette.fg, gui = "bold" })
 -- MATCH AND SPELL
 -- =============================================================================
 hi("MatchParen", { guifg = palette.accent_visual, gui = "bold,underline" })
-hi("SpellBad", { guifg = palette.accent_error, guisp = palette.accent_error, gui = "undercurl" })
+hi("SpellBad", {
+    guifg = palette.accent_error,
+    guisp = palette.accent_error,
+    gui = "undercurl",
+})
 hi("SpellCap", { guifg = "#0087d7", guisp = "#0087d7", gui = "undercurl" })
 hi("SpellLocal", { guifg = "#d787d7", guisp = "#d787d7", gui = "undercurl" })
 hi("SpellRare", { guifg = "#00afaf", guisp = "#00afaf", gui = "undercurl" })
@@ -228,7 +254,10 @@ hi("SpellRare", { guifg = "#00afaf", guisp = "#00afaf", gui = "undercurl" })
 -- =============================================================================
 -- ERROR AND TODO
 -- =============================================================================
-hi("Error", { guifg = palette.accent_error, guibg = palette.bg, gui = "bold,reverse" })
+hi(
+    "Error",
+    { guifg = palette.accent_error, guibg = palette.bg, gui = "bold,reverse" }
+)
 hi("ErrorMsg", { guifg = palette.fg, guibg = palette.bg, gui = "reverse" })
 hi("WarningMsg", { guifg = palette.fg })
 hi("Todo", { guifg = palette.accent_search, gui = "bold,reverse" })
