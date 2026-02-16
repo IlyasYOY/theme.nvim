@@ -198,6 +198,8 @@ hi("TabLine", { guifg = palette.muted, guibg = palette.bg })
 hi("TabLineFill", { guifg = palette.muted, guibg = palette.bg })
 hi("TabLineSel", { guifg = palette.bg, guibg = palette.elevated, gui = "bold" })
 
+hi("NormalFloat", { guifg = palette.fg, guibg = palette.elevated })
+
 hi("Pmenu", { guifg = palette.fg, guibg = palette.elevated })
 hi("PmenuSel", { guifg = palette.bg, guibg = palette.fg })
 hi("PmenuExtra", { guifg = palette.fg, guibg = palette.elevated })
