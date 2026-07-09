@@ -1,14 +1,24 @@
 # theme.nvim
 
-A minimal, eye-friendly dark theme with subtle accents, designed for focus and
-comfort during extended coding sessions. A Neovim colorscheme tailored for
-readability and aesthetic consistency.
+A minimal monochrome Neovim colorscheme designed for focus and readability.
+It keeps syntax mostly neutral, uses restrained contrast, and supports both
+dark and light backgrounds.
 
-A fork of: [redbug312/cactusbuddy](https://github.com/redbug312/cactusbuddy).
+The exported colorscheme is `ilyasyoy-mono`.
 
 <img width="1384" height="903" alt="Screenshot 2025-10-19 at 13 19 58" src="https://github.com/user-attachments/assets/ba4102ba-e724-4b2c-8b2a-09c8efea97fe" />
 
 ## Installation
+
+### `vim.pack` built-in package manager
+
+```lua
+vim.pack.add {
+    "https://github.com/IlyasYOY/theme.nvim",
+}
+
+vim.cmd.colorscheme "ilyasyoy-mono"
+```
 
 ### [lazy.nvim](https://github.com/folke/lazy.nvim)
 
@@ -18,7 +28,7 @@ A fork of: [redbug312/cactusbuddy](https://github.com/redbug312/cactusbuddy).
     lazy = false,
     priority = 1000,
     config = function()
-        vim.cmd.colorscheme("ilyasyoy")
+        vim.cmd.colorscheme("ilyasyoy-mono")
     end,
 },
 ```
@@ -26,35 +36,44 @@ A fork of: [redbug312/cactusbuddy](https://github.com/redbug312/cactusbuddy).
 Then in your init.lua:
 
 ```lua
-vim.cmd('colorscheme ilyasyoy')
+vim.cmd('colorscheme ilyasyoy-mono')
 ```
 
 ## Features
 
 - ✅ **TrueColor optimized** - Designed for modern terminals
-- ✅ **Low contrast** - Gentle on the eyes during long sessions
-- ✅ **Consistent syntax highlighting** - Cohesive color palette across
-  languages
+- ✅ **Monochrome syntax** - Neutral syntax groups with emphasis from style, not hue
+- ✅ **Light and dark backgrounds** - Uses `background` to select matching values
 - ✅ **Terminal color support** - Seamless integration with your terminal
 - ✅ **Plugin support** - Full integration with popular Neovim plugins
 
-## Supported Plugins
+## Supported Plugins and Integrations
 
-- Diagnostics (LSP)
+- Built-in LSP diagnostics
+- Built-in diff, quickfix, popup menu, and spell highlights
 - [nvim-treesitter/nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
-- [lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
-- [nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
+- [ibhagwan/fzf-lua](https://github.com/ibhagwan/fzf-lua)
+- [stevearc/oil.nvim](https://github.com/stevearc/oil.nvim)
 - [tpope/vim-fugitive](https://github.com/tpope/vim-fugitive)
-
-## 🎨 Examples
-
-See [Wiki: Examples](https://github.com/IlyasYOY/theme.nvim/wiki/Example) for
-detailed screenshots and language-specific previews.
 
 ## Configuration
 
-No additional configuration is required. The theme loads automatically when the
-colorscheme is set.
+No setup function is required. Set `vim.o.background` to `"dark"` or
+`"light"` before loading the colorscheme when you want to force a variant;
+otherwise Neovim uses its current background value.
+
+### auto-dark-mode.nvim
+
+`ilyasyoy-mono` has both light and dark palettes behind the same colorscheme
+name. When using [auto-dark-mode.nvim](https://github.com/f-person/auto-dark-mode.nvim),
+point both variants at `ilyasyoy-mono` and let the plugin update `background`:
+
+```lua
+require("auto-dark-mode").setup {
+    dark_mode_colorscheme = "ilyasyoy-mono",
+    light_mode_colorscheme = "ilyasyoy-mono",
+}
+```
 
 ## License
 
