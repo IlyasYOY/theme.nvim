@@ -6,7 +6,9 @@ dark and light backgrounds.
 
 The exported colorscheme is `ilyasyoy-mono`.
 
-<img width="1384" height="903" alt="Screenshot 2025-10-19 at 13 19 58" src="https://github.com/user-attachments/assets/ba4102ba-e724-4b2c-8b2a-09c8efea97fe" />
+<img width="1574" height="1026" alt="Screenshot 2026-07-09 at 22 02 07" src="https://github.com/user-attachments/assets/4aadde98-e92a-455d-95d5-0137268d89e9" />
+
+<img width="1574" height="1026" alt="Screenshot 2026-07-09 at 22 02 36" src="https://github.com/user-attachments/assets/4b76836c-8462-403e-a9f7-97d1f6c06275" />
 
 ## Installation
 
