@@ -1,0 +1,43 @@
+*theme.txt*  Minimal monochrome colorscheme for Neovim
+*theme.nvim* *ilyasyoy-mono*
+
+===============================================================================
+INTRODUCTION                                                     *theme-intro*
+
+theme.nvim provides the |ilyasyoy-mono| colorscheme with dark and light
+palettes. Neovim 0.11 or newer and true-color display support are required.
+
+===============================================================================
+INSTALLATION                                               *theme-installation*
+
+Install IlyasYOY/theme.nvim with a package manager, then load it with:
+
+>vim
+    :colorscheme ilyasyoy-mono
+<
+
+No setup function or user command is provided.
+
+===============================================================================
+CONFIGURATION                                             *theme-configuration*
+
+Set 'background' before loading the colorscheme:
+
+>lua
+    vim.o.background = "light"
+    vim.cmd.colorscheme "ilyasyoy-mono"
+<
+
+The loader enables 'termguicolors', sets g:colors_name to ilyasyoy-mono, and
+defines core, syntax, Tree-sitter, diagnostic, and plugin integration groups.
+
+===============================================================================
+HEALTH                                                           *theme-health*
+
+Run >
+    :checkhealth theme
+<
+to inspect the runtime file, active palette, Neovim version, true-color state,
+and representative highlight groups.
+
+vim:tw=78:ts=8:noet:ft=help:norl:

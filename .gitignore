@@ -40,3 +40,12 @@ luac.out
 *.hex
 
 .aider*
+
+nvim.log
+.test-home/
+.test-work/
+.test-deps/
+.DS_Store
+.luarocks/
+*.swp
+*.swo
