@@ -18,7 +18,7 @@
 - `make help-check` validates the tracked Vim help tags.
 - `make check` is the canonical non-mutating verification target.
 
-Use `NVIM_VERSION=v0.11.7`, `v0.12.4`, or `nightly` to run against a downloaded
+Use `NVIM_VERSION=v0.11.7`, `v0.12.5`, or `nightly` to run against a downloaded
 Neovim build. Run `make help-tags` after changing help tags.
 
 ## Runtime Compatibility
