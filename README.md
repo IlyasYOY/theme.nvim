@@ -82,7 +82,7 @@ Vim help is available with `:help theme.nvim`.
 
 Run `make check` for the canonical non-mutating lint, dark/light runtime tests,
 health tests, and Vim-help validation. Supported releases can be exercised with
-`make test NVIM_VERSION=v0.11.7` and `make test NVIM_VERSION=v0.12.4`;
+`make test NVIM_VERSION=v0.11.7` and `make test NVIM_VERSION=v0.12.5`;
 nightly is an additional compatibility probe.
 
 ## License
